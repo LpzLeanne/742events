@@ -5,7 +5,7 @@ import Logo from "../../components/Logo";
 import "./style.scss";
 
 const Menu = () => (
-  <nav>
+  <nav data-testid="menu-testid">
     <Logo />
     <ul>
       <li>
