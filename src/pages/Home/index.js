@@ -14,21 +14,22 @@ import Menu from "../../containers/Menu";
 import "./style.scss";
 
 const Page = () => {
-  
   const { data } = useData();
-  const sortedEvents = data?.events ? [...data.events].sort((a, b) => new Date(b.date) - new Date(a.date)) : [];
+  const sortedEvents = data?.events
+    ? [...data.events].sort((a, b) => new Date(b.date) - new Date(a.date))
+    : [];
   const lastEvent = sortedEvents[0];
 
   return (
     <>
-      <header>
-        <Menu />
+      <header data-testid="header-testid">
+        <Menu data-testid="menu-testid"/>
       </header>
       <main>
-        <section className="SliderContainer">
+        <section className="SliderContainer" data-testid="slider-testid">
           <Slider />
         </section>
-        <section className="ServicesContainer">
+        <section className="ServicesContainer" data-testid="services-section-testid">
           <h2 className="Title">Nos services</h2>
           <p>Nous organisons des événements sur mesure partout dans le monde</p>
           <div className="ListContainer">
@@ -57,11 +58,11 @@ const Page = () => {
             </ServiceCard>
           </div>
         </section>
-        <section className="EventsContainer">
+        <section className="EventsContainer" data-testid="events-section-testid">
           <h2 className="Title">Nos réalisations</h2>
-          <EventList />
+          <EventList data-testid="event-list-testid"/>
         </section>
-        <section className="PeoplesContainer">
+        <section className="PeoplesContainer" data-testid="people-section-testid">
           <h2 className="Title">Notre équipe</h2>
           <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
           <div className="ListContainer">
@@ -116,8 +117,8 @@ const Page = () => {
           </Modal>
         </div>
       </main>
-      <footer className="row">
-        <div className="col presta">
+      <footer className="row" data-testid="footer-testid">
+        <div className="col presta" data-testid="last-event-testid">
           <h3>Notre dernière prestation</h3>
           {lastEvent ? (
             <EventCard
@@ -128,10 +129,12 @@ const Page = () => {
               label={lastEvent.type}
             />
           ) : (
-            <div className="col presta">Le dernier évènement n&apos;a pas pu être affiché.</div>
-          )}
+            <div className="col presta">
+              Le dernier événement n&apos;a pas pu être affiché.
+            </div> 
+          )} 
         </div>
-        <div className="col contact">
+        <div className="col contact" data-testid="contact-details-testid">
           <h3>Contactez-nous</h3>
           <address>45 avenue de la République, 75000 Paris</address>
           <div>01 23 45 67 89</div>
