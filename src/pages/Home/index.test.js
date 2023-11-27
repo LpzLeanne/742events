@@ -123,11 +123,13 @@ describe("When events are created", () => {
       );
     });
 
+    // Extracting event dates and converting them to date
     const eventList = screen.getByTestId('event-list-testid');
     const eventDates = Array.from(eventList.children).map((event) =>
       new Date(event.getAttribute('data-date')).getTime()
     );
 
+    // Check if the events are sorted by date form the oldest to the recent
     for (let i = 0; i < eventDates.length - 1; i += 1) {
       expect(eventDates[i]).toBeGreaterThanOrEqual(eventDates[i + 1]);
     }
