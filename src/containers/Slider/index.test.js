@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import Slider from "./index";
 import { api, DataProvider } from "../../contexts/DataContext";
 
@@ -117,8 +118,9 @@ describe("When the slider is displayed", () => {
       .findIndex((radio) => radio.getAttribute("checked"));
 
     // Advance the timers by the interval time
-    jest.advanceTimersByTime(5000);
-
+    act(() => {
+      jest.advanceTimersByTime(5000);
+    });
     // Run only the pending timers to ensure that the timers are executed
     jest.runOnlyPendingTimers();
 
