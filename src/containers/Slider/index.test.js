@@ -109,7 +109,7 @@ describe("When the slider is displayed", () => {
       </DataProvider>
     );
 
-    // Wait for the initial slide to be rendered
+    // Wait for the initial slide (0) to be rendered
     await screen.findByText("World economic forum");
 
     // Find the initial index (0)
@@ -117,10 +117,11 @@ describe("When the slider is displayed", () => {
       .getAllByTestId("radio-button")
       .findIndex((radio) => radio.getAttribute("checked"));
 
-    // Advance the timers by the interval time
+    // Advance the timers by the interval time (5000ms)
     act(() => {
       jest.advanceTimersByTime(5000);
     });
+
     // Run only the pending timers to ensure that the timers are executed
     jest.runOnlyPendingTimers();
 
