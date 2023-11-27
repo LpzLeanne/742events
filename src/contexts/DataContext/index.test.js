@@ -1,9 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import { DataProvider, api, useData } from "./index";
 
+global.fetch = jest.fn();
+
 describe("When a data context is created", () => {
   it("a call is executed on the events.json file", async () => {
-    api.loadData = jest.fn().mockReturnValue({ result: "ok" });
+    global.fetch.mockResolvedValue({
+      json: async () => ({ result: "ok" }),
+    });
     const Component = () => {
       const { data } = useData();
       return <div>{data?.result}</div>;
