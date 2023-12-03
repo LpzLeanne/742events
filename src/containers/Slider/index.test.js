@@ -117,7 +117,7 @@ describe("When the slider is displayed", () => {
       .getAllByTestId("radio-button")
       .findIndex((radio) => radio.getAttribute("checked"));
 
-    // Advance the timers by the interval time (5000ms)
+    // Advance the timers by the interval time (5s)
     act(() => {
       jest.advanceTimersByTime(5000);
     });

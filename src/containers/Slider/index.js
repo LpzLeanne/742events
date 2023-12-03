@@ -19,13 +19,14 @@ const Slider = () => {
   useEffect(() => {
     const nextCard = () => {
       setIndex((prevIndex) =>
-        prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0
+        prevIndex < byDateDesc.length -1 ? prevIndex + 1 : 0
       );
     };
 
   const interval = setInterval(() => {
     setIndex((prevIndex) => {
       nextCard();
+      // console.log("Previous index:", prevIndex);
       return prevIndex;
     });
   }, 5000);
@@ -35,14 +36,13 @@ const Slider = () => {
   };
 }, [byDateDesc]);
 
-
   return (
     <div className="SlideCardList" data-testid="slide-card-list">
-      {byDateDesc?.map((focus, idx) => (
+      {byDateDesc?.map((focus, focusIdx) => (
         <div
           key={focus.id}
           className={`SlideCard SlideCard--${
-            index === idx ? "display" : "hide"
+            index === focusIdx ? "display" : "hide"
           }`}
         >
           <img src={focus.cover} alt="forum" />
@@ -66,7 +66,9 @@ const Slider = () => {
               type="radio"
               name="radio-button"
               checked={index === radioIdx}
-              onChange={() => handleRadioChange(radioIdx)}
+              onChange={() => {
+                handleRadioChange(radioIdx);
+              }}
               value={radioIdx}
               data-testid="radio-button"
             />
